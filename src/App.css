@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 460px) {
+  nav {
+      width: 100% !important;
+      float:none !important;
+  }
+}
+
+.beerContainer {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
