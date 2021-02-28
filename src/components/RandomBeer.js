@@ -7,7 +7,6 @@ export default class RandomBeer extends Component {
     }
 
     componentDidMount() {
-        const id = this.props.match.params.beerId;
         axios
             .get(`https://ih-beers-api2.herokuapp.com/beers/random`)
             .then(singleBeerResponse => {
