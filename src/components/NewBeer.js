@@ -133,7 +133,7 @@ export default class NewBeer extends Component {
                     />
                     
 
-                    <button>Add New!</button>
+                    <button type="submit">Add New!</button>
                 </form>
             </div>
         )

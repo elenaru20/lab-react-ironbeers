@@ -9,7 +9,8 @@ import '../App.css';
 class Beers extends React.Component {
 
     state = {
-        listOfBeers: []
+        listOfBeers: [],
+        search: ''
       };
 
     componentDidMount() {
@@ -22,12 +23,37 @@ class Beers extends React.Component {
       .catch((err) => console.log(err));
     }
 
+    inputSearchHandler = (event) => {
+        const { value } = event.target
+        this.setState({ search: value })
+
+        axios
+            .get(`https://ih-beers-api2.herokuapp.com/beers/search?q=${this.state.search}`)
+            .then( (response) => {
+                this.setState({listOfBeers: response.data})
+            })
+            .catch( (err) => console.log(err));
+  }
+
+
     render() {
         if (this.state.listOfBeers.length === 0) return <h3>Loading...</h3>
         return (
             <div className="App">
                 <header className="App-header" style={{backgroundColor:"white"}}>
                     <h1>All Beers</h1>
+                    
+                    <label style={{color:"black"}} htmlFor="search">Beer Search:</label>
+                    <input
+                        placeholder="Search for a beer..."
+                        name="search"
+                        id="search"
+                        type="text"
+                        value={this.state.search}
+                        onChange={this.inputSearchHandler}
+                    />
+                    
+
                     {this.state.listOfBeers.map(beer => {
                         return (
                             <Link to={`/beers/${beer._id}`} key={beer._id} className="beerContainer">
